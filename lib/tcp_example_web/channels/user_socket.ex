@@ -1,9 +1,14 @@
 defmodule TcpExampleWeb.UserSocket do
   use Phoenix.Socket
 
-  ## Channels
-  # channel "room:*", TcpExampleWeb.RoomChannel
+  #doc
+  """
+  {"topic": "topic:subtopic", "event": "phx_join", "payload": {}, "ref": "1", "join_ref": "1"}
+  ["topic:", "topic:subtopic", "event": "shout", "payload": {"message": "test"}, "ref": "2", "join_ref: "1"]
+  """
 
+  ## Channels
+  channel "topic:*", TcpExampleWeb.RoomChannel
   # Socket params are passed from the client and can
   # be used to verify and authenticate a user. After
   # verification, you can put default assigns into

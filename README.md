@@ -1,18 +1,32 @@
 # TcpExample
 
-To start your Phoenix server:
+Example of a raw TCP handler for Phoenix channels.
 
-  * Setup the project with `mix setup`
-  * Start Phoenix endpoint with `mix phx.server`
+The server is located at `lib/tcp_example/server.ex`
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+Start with `iex -S mix phx.server`, the tcp port will be output in a log warning.
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+Navigate to http://localhost:4000 and open the developer console.
 
-## Learn more
+You can connect to the TCP socket using telnet:
 
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+```
+telnet 127.0.0.1 THE_PORT_NUMBER
+```
+
+Use the following message to join a Phoenix channel:
+
+```
+{"topic": "topic:subtopic", "event": "phx_join", "payload": {}, "ref": "1", "join_ref": "1"}
+```
+
+Use the following message to broadcast an event:
+
+```
+{"topic": "topic:subtopic", "event": "shout", "payload": {"message": "weee"}, "ref": "2", "join_ref": "1"}
+```
+
+The messages will be logged in the JavaScript console of the browser.
+
+
+If the TCP socket crashes, a new port number will be assigned.

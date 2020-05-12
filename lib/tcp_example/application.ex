@@ -11,6 +11,7 @@ defmodule TcpExample.Application do
       TcpExampleWeb.Telemetry,
       # Start the PubSub system
       {Phoenix.PubSub, name: TcpExample.PubSub},
+      TcpExample.Server,
       # Start the Endpoint (http/https)
       TcpExampleWeb.Endpoint
       # Start a worker by calling: TcpExample.Worker.start_link(arg)
